@@ -32,7 +32,7 @@ jobs:
     - name: Build with Gradle
       run: |
         chmod +x ./gradlew
-        ./gradlew clean assemble
+        ./gradlew clean build -x test
 
     - name: Docker build & push to prod
       run: |
