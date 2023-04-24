@@ -28,8 +28,7 @@ jobs:
       with:
         arguments: build
     - name: Store build result
-      run: echo "BUILD_RESULT=${{ steps.gradle.outputs.build-result }}" >> $GITHUB_ENV
-    - name: Set environment variables
-      run: |
-        echo "BUILD_RESULT=${{ env.BUILD_RESULT }}" >> $GITHUB_ENV
-        echo "::set-env name=BUILD_RESULT::${{ env.BUILD_RESULT }}"
+      env:
+        BUILD_RESULT: ${{ steps.gradle.outputs.build-result }}
+      run: echo "$BUILD_RESULT" >> $GITHUB_ENV
+
