@@ -24,13 +24,13 @@ public class TestController {
     public ResponseEntity<HttpStatus> success() {
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    // mysql -h jdbc:mysql://awsmysql.c8cckyp9vob1.us-east-1.rds.amazonaws.com:3306 -u admin -P 3306 -p 1q2w3e4r
     @GetMapping("/fail")
     public String fail() {
         return "Fail";
     }
 
-    @PostMapping("/createUser/{id}/{pw}")
+    @GetMapping("/createUser/{id}/{pw}")
     public ResponseEntity<User> createUser(@PathVariable String id, @PathVariable String pw) {
         User user = new User(id, pw);
         User save = userRepository.save(user);
@@ -43,7 +43,7 @@ public class TestController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/user/")
+    @GetMapping("/userAll")
     public ResponseEntity<List<User>> getAllUser() {
         List<User> all = userRepository.findAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
