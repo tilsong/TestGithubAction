@@ -53,3 +53,4 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_REPO }}/springboot-github-actions-test
           docker-compose up -d
           docker image prune -f
+
