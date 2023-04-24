@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +23,11 @@ jobs:
     - name: Make Gradle wrapper executable
       run: chmod +x gradlew
     - name: Build with Gradle
+      id: gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-
+    - name: Store build result
+      env:
+        BUILD_RESULT: ${{ steps.gradle.outputs.build-result }}
+      run: echo "$BUILD_RESULT" >> $GITHUB_ENV
