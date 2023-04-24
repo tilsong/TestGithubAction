@@ -40,16 +40,16 @@ jobs:
         docker build -f Dockerfile -t ${{ secrets.DOCKER_REPO }}/springboot-github-actions-test .
         docker push ${{ secrets.DOCKER_REPO }}/springboot-github-actions-test
 
-#    - name: Deploy
-#      uses: appleboy/ssh-action@master
-#      id: deploy
-#      with:
-#        host: ${{ secrets.HOST }}
-#        username: ubuntu
-#        key: ${{ secrets.KEY }}
-#        envs: GITHUB_SHA
-#        script: |
-#          sudo docker rm -f $(docker ps -qa)
-#          sudo docker pull ${{ secrets.DOCKER_REPO }}/springboot-github-actions-test
-#          docker-compose up -d
-#          docker image prune -f
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      id: deploy
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.KEY }}
+        envs: GITHUB_SHA
+        script: |
+          sudo docker rm -f $(docker ps -qa)
+          sudo docker pull ${{ secrets.DOCKER_REPO }}/springboot-github-actions-test
+          docker-compose up -d
+          docker image prune -f
