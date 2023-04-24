@@ -30,5 +30,6 @@ jobs:
     - name: Store build result
       env:
         BUILD_RESULT: ${{ steps.gradle.outputs.build-result }}
-      run: echo "$BUILD_RESULT" >> $GITHUB_ENV
+      run: echo "BUILD_RESULT=${BUILD_RESULT}" >> $GITHUB_ENV
+
 
