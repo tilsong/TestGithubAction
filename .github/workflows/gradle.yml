@@ -71,10 +71,12 @@ jobs:
         id: deploy
         with:
           host: ${{ secrets.HOST }}
-          username: root
-          key: ${{ secrets.KEY }}
+          username: ${{ secrets.SERVER_USER }}
+#           key: ${{ secrets.KEY }}
+          password: ${{ secrets.SERVER_PASSWORD }}
           envs: GITHUB_SHA
           script: |
+            sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             sudo docker rm -f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_REPO }}/springboot-github-actions-test
             docker-compose up -d
