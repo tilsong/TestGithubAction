@@ -71,7 +71,7 @@ jobs:
         id: deploy
         with:
           host: ${{ secrets.HOST }}
-          username: directors-dev
+          username: root
           key: ${{ secrets.KEY }}
           envs: GITHUB_SHA
           script: |
