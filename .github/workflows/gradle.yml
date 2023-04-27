@@ -16,7 +16,6 @@ jobs:
     steps:
       - name: Checking your input
         run: |
-          MERGED_RAW: ${{ github.event.pull_request.merged }}
           echo "github.event.pull_request.merged           : $MERGED_RAW"
           echo "github.event.pull_request.merged == 'true' : $MERGED_TRUE_STR"
           echo "github.event.pull_request.merged  == true  : $MERGED_TRUE_BOOL"
