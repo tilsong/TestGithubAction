@@ -8,7 +8,7 @@ on:
     types: [opened, reopened, synchronize, closed]
 
 jobs:
-  test:
+  build-test:
     name: Input check
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +21,7 @@ jobs:
           MERGED_RAW: ${{ github.event.pull_request.merged }}
           MERGED_TRUE_STR: ${{ github.event.pull_request.merged == 'true' }}
           MERGED_TRUE_BOOL: ${{ github.event.pull_request.merged == true }}
-  build:
+  deploy:
     if: github.event.pull_request.merged
     name: Input check
     runs-on: ubuntu-latest
